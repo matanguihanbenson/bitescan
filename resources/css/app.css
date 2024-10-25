@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --primary: #02a367;
+    --primary-dark: #04714a;
+    --primary-light: #edfbf3;
+    --secondary: #f7f7f7;
+}
+
+body {
+    font-family: inter;
+    background: var(--secondary);
+}
+
+.order-item {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.order-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.item-name {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.item-price {
+    font-size: 14px;
+    color: #888;
+    margin-top: 2px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.quantity-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.quantity-btn:active {
+    background-color: var(--primary-dark);
+}
+
+.quantity-display {
+    font-size: 16px;
+    width: 24px;
+    text-align: center;
+}
+
+.order-actions {
+    position: absolute;
+    right: 0px;
+    top: 0%;
+    transform: translateY(0%);
+    display: flex;
+    align-items: center;
+    width: 100px;
+    background-color: #f1f1f1;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+.delete {
+    margin-left: 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+    text-align: center;
+    border-radius: 8px;
+}
+.order-item.show-actions .order-actions {
+    transform: translateX(0);
+}
+
+/* Slide in from the right animation for adding items */
+@keyframes slideIn {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.order-item.slide-in {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Slide out to the left animation for removing items */
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+.order-item.slide-out {
+    animation: slideOut 0.3s ease-out;
+}
